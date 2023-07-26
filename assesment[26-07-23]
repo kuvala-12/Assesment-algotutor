@@ -1,0 +1,107 @@
+1> JAVA  -Find the duplicate number[easy]
+
+class Solution {
+     public int findDuplicate(int[] nums) {
+      HashMap<Integer,Integer>map=new HashMap<>();
+      int a=0;
+     for(int i:nums){
+     if(map.containsKey(i)){
+     a=i;
+     break;
+     }
+     else
+     map.put(i,1);
+    }
+     return a;
+}
+}
+
+2> C -Number of good paris[easy]
+
+int numIdenticalPairs(int* nums, int numsSize)
+{
+    int c=0;
+    for(int j=0;j<numsSize;j++)
+    {
+        for(int i=j+1;i<numsSize;i++)
+        {
+            if(nums[j]==nums[i])
+            c++;
+        }
+    }
+    return c;
+}
+
+3> JAVA -Find Greatest Commondivisor of Array[easy]
+
+class Solution {
+    public int findGCD(int[] nums) {
+        
+        int max = nums[0];
+        int min = nums[0];
+
+        for(int m=0; m<nums.length; m++){
+            if(nums[m] > max){
+                max = nums[m];
+            }
+            if(nums[m] < min){
+                min = nums[m];
+            }
+        }
+
+        while(max != min){
+            if(max>min){
+                max = max-min;
+            }
+            else{
+                min = min-max;
+            }
+        }
+        return max;
+    }
+}
+
+5> JAVA -Find all duplicates in an array[medium]
+
+class Solution {
+    public List<Integer> findDuplicates(int[] nums) {
+        List<Integer> m = new ArrayList<>();
+        for(int i=0;i<nums.length;i++)
+        {
+            int in=Math.abs(nums[i])-1;
+            if(nums[in]<0)
+            {
+                m.add(in+1);
+
+            }
+            nums[in]=-nums[in];
+        }
+        return m;
+
+
+        
+    }
+}
+
+6>JAVA -Maximum points you can obtain from cards[medium]
+
+class Solution {
+    public int maxScore(int[] cardPoints, int k) {       
+        int l = 0;
+        int r = cardPoints.length - k;
+
+        int total = 0;
+        for(int i = r; i < cardPoints.length; i++) {
+            total += cardPoints[i]; 
+        }
+        int result = total;
+
+        while(r < cardPoints.length) {
+            total += cardPoints[l] - cardPoints[r];
+            result = Math.max(result, total);
+            l++;
+            r++;
+        }
+        return result;
+    }
+}
