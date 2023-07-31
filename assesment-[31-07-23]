@@ -1,0 +1,125 @@
+Assesment-31/07/2023
+
+1>JAVA -Roman to integer
+class Solution {
+    public int con(char c){
+        switch(c){
+            case 'I':
+                return 1;
+            case 'V':
+                return 5;
+            case 'X':
+                return 10;
+            case 'L':
+                return 50;
+            case 'C':
+                return 100;
+            case 'D':
+                return 500;
+            case 'M':
+                return 1000;
+            default:
+                return 0;
+        }
+    }
+    public int romanToInt(String s) {
+
+        int sum=con(s.charAt(s.length()-1));
+        for(int i=s.length()-2;i>=0;i--) {
+             
+            int x= con(s.charAt(i));
+            int y=con(s.charAt(i+1));
+                if(x<y) {
+                    sum=sum-x;
+                }
+                else{
+                    sum=sum+x;
+                }
+        }
+        return sum;
+    }
+}
+
+2>JAVA   -Longest common prefix
+
+
+class Solution {
+    public String longestCommonPrefix(String[] strs) {
+        Arrays.sort(strs);
+        String s1 = strs[0];
+        String s2 = strs[strs.length-1];
+        int idx = 0;
+        while(idx < s1.length() && idx < s2.length()){
+            if(s1.charAt(idx) == s2.charAt(idx)){
+                idx++;
+            } else {
+                break;
+            }
+        }
+        return s1.substring(0, idx);
+    }
+}
+
+
+3>JAVA - Valid Palindrome
+
+class Solution {
+    public boolean isPalindrome(String string ) {
+        string = string.toLowerCase().replaceAll("[^a-z0-9]", "");
+        int i = 0;
+        int j = string.length() - 1;
+        while(i <= j) {
+            if (string.charAt(i) != string.charAt(j)) {
+                return false;
+            }
+            i++;
+            j--;
+        }
+        return true;
+    }
+}
+
+4>JAVA - VAlid anagram
+
+class Solution {
+    public boolean isAnagram(String s, String t) {
+
+        int arr1[]=new int[26];
+        int arr2[]=new int[26];
+  
+        for(int i = 0; i<s.length(); i++)
+        {
+            arr1[s.charAt(i)-'a']++;
+        }
+        for(int i = 0; i<t.length(); i++)
+        {
+            arr2[t.charAt(i)-'a']++;
+        }
+        if(Arrays.equals(arr1,arr2))
+        {
+            return true;
+        }
+        return false;
+        
+5>C++  - Count and say
+class Solution {
+public:
+    string countAndSay(int N) {
+        if(N==1)
+            return "1";
+        string temp=countAndSay(N-1);
+        int i=0;
+        string str="";
+        while(i<temp.size()){
+            char ch=temp[i];
+            int count=0;
+            while(temp[i]==ch){
+                count++;
+                i++;
+            }
+            str+=to_string(count);
+            str+=ch;
+        }
+        return str;
+    }
+};
