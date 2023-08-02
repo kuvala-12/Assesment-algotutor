@@ -1,0 +1,133 @@
+Assessment Algotutor
+
+1.Sprial matrix   -Java
+
+class Solution {
+    public int[][] generateMatrix(int n) {
+        int[][] ans = new int[n][n];
+        int top = 0, L= 0;
+        int bottom = n-1, R = n-1;
+        int k = 1;
+        while(top<=bottom && L<=R){
+            for(int i=L;i<=R;i++){
+                ans[top][i] = k++ ;
+            }
+            top++;
+            for(int i=top;i<=bottom;i++){
+                ans[i][R] = k++;
+            }
+            R--;
+            if(top<=bottom){
+                for(int i=R;i>=L;i--){
+                    ans[bottom][i] = k++;
+                  }
+                 bottom--;
+            }
+            if(L<=R){
+                for(int i=bottom;i>=top;i--){
+                    ans[i][L] = k++;
+                }  
+                L++;
+            }
+            
+        }
+        
+        return ans;
+    }
+}
+
+
+2.Richest Customer Wealth -Java
+
+class Solution {
+    public int maximumWealth(int[][] accounts) {
+        int ans =0;
+        int max = 0;
+        for(int k=0; k<accounts.length; k++){
+           
+                int sum =0;
+                for(int m=0; m<accounts[k].length; m++)
+                    sum += accounts[k][m];
+                
+                if(ans < sum)
+                    ans = sum;
+            
+        } 
+        return ans;
+    }
+}
+
+
+3.Toeplitz Matrix -Java
+
+class Solution {
+    public boolean isToeplitzMatrix(int[][] matrix) {
+        for(int k=1; k<matrix.length; k++){
+            for(int m=1; m<matrix[0].length; m++){
+                if(matrix[k][m] != matrix[k-1][m-1])
+                    return false;
+            }
+        }
+        
+        return true;
+    }
+}
+
+
+
+4.Matrix Diagonal Sum -Java
+
+class Solution {
+    public int diagonalSum(int[][] mat) {
+        int verSum=0;
+        for(int i=0; i<mat.length; i++){
+            verSum+=mat[i][i];
+        }
+        int count=0;
+        int horiSum=0;
+        for(int j=mat[0].length-1; j>=0; j--){
+            if(mat[0].length/2==count && mat[0].length%2!=0){
+                count++;
+                continue;
+            }
+            horiSum+=mat[count][j];  
+            count++;  
+        }
+        return (verSum+horiSum);
+    }
+}
+
+
+5.Count Negative numbers in a sorted matrix -Java
+
+class Solution {
+    public int countNegatives(int[][] grid) {
+        int rows = grid.length;
+        int cols = grid[0].length;
+        int count = 0;
+        for (int i = 0; i < rows ; i++) {
+            for (int j = 0; j < cols; j++) {
+                if (grid[i][j] < 0){
+                   count += grid[i].length - j;
+                    break;
+                }
+            }
+        }
+        return count;
+    }
+}
+
+
+6.Transpose matrix -Java
+
+class Solution {
+    public int[][] transpose(int[][] matrix) {
+        int[][] ans = new int[matrix[0].length][matrix.length];
+        for(int i=0; i < matrix.length; i++){
+            for (int j = 0; j < matrix[0].length; j++){
+                ans[j][i] = matrix[i][j];
+            } 
+        }
+        return ans;
+    }
+}
